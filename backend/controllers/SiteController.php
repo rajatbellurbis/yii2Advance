@@ -82,7 +82,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            // return $this->goBack();
+            return $this->goBack();
         }
 
         $model->password = '';
@@ -103,22 +103,4 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
-
-    public function actionTest($num){
-        for($i=1; $i<=$num; $i++){
-            for($j=1; $j<=$i; $j++){
-                echo '*';
-            }
-            echo '<br>';
-        }
-        for($a=$num; $a>=1; $a--){
-            for($b=$a; $b>=1; $b--){
-                echo '*';
-            }
-            echo '<br>';
-        }
-
-        exit;
-    }
-    
 }
