@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\LoginForm;
+use common\models\User;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -28,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -102,5 +103,21 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionDashboard(){
+        
+        $user = User::find()->one();
+        echo '<pre>';
+
+        foreach($user as $users){
+            print_R($users);
+            echo '<br>';
+        }
+        // print_r($user->username);
+        // echo $user->password_hash;
+        
+        exit;
+        // return 'Welcome To Backend Dashboard!';
     }
 }
